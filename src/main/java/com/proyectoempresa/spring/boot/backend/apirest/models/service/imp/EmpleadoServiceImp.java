@@ -1,0 +1,58 @@
+package com.proyectoempresa.spring.boot.backend.apirest.models.service.imp;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.proyectoempresa.spring.boot.backend.apirest.models.dao.IEmpleadoDao;
+import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Empleado;
+import com.proyectoempresa.spring.boot.backend.apirest.models.service.IEmpleadoService;
+
+@Service
+public class EmpleadoServiceImp implements IEmpleadoService {
+
+	@Autowired
+	private IEmpleadoDao empleadoDao;
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Empleado> findAll() {
+		return (List<Empleado>) empleadoDao.findAll();
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Empleado> findAll(Pageable pageable) {
+		return empleadoDao.findAll(pageable);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Empleado> findEmpleados(String nombre, String apellido1, String apellido2, Pageable pageable) {
+		return empleadoDao.findEmpleados(nombre, apellido1, apellido2, pageable);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Empleado findById(Long id) {
+		return empleadoDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public Empleado save(Empleado empleado) {
+		return empleadoDao.save(empleado);
+	}
+
+	@Override
+	@Transactional
+	public void delete(Long id) {
+		empleadoDao.deleteById(id);
+		
+	}
+
+}
