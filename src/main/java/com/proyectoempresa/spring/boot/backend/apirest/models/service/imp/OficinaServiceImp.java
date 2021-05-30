@@ -43,7 +43,7 @@ public class OficinaServiceImp implements IOficinaService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Oficina findById(int id) {
+	public Oficina findById(Long id) {
 		return oficinaDao.findById(id).orElse(null);
 	}
 	
@@ -57,7 +57,7 @@ public class OficinaServiceImp implements IOficinaService{
 
 	@Override
 	@Transactional
-	public void delete(int id) {
+	public void delete(Long id) {
 		oficinaDao.deleteById(id);
 		
 	}

@@ -10,7 +10,7 @@ import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Empleado;
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Oficina;
 
 
-public interface IOficinaDao extends CrudRepository<Oficina, Integer>, JpaRepository<Oficina, Integer> {
+public interface IOficinaDao extends CrudRepository<Oficina, Long>, JpaRepository<Oficina, Long> {
 
 	@Query(value="select * from oficinas where nombre like %?1% " + " or (ciudad like %?2%) or (provincia like %?3%)  "
 			, nativeQuery = true)

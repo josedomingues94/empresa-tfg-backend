@@ -63,7 +63,7 @@ public class OficinaRestController {
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/oficinas/{id}")
-	public ResponseEntity<?> show(@PathVariable int id){
+	public ResponseEntity<?> show(@PathVariable Long id){
 		Oficina oficina = null;
 		Map<String, Object> response = new HashMap<>();
 		
@@ -116,7 +116,7 @@ public class OficinaRestController {
 	
 	@Secured("ROLE_ADMIN")
 	@PutMapping("/oficinas/{id}")
-	public ResponseEntity<?> update(@Valid @RequestBody Oficina oficina, BindingResult result, @PathVariable int id){
+	public ResponseEntity<?> update(@Valid @RequestBody Oficina oficina, BindingResult result, @PathVariable Long id){
 		
 		Oficina oficinaActual = oficinaService.findById(id);
 		Oficina oficinaActualizada = null;
@@ -159,7 +159,7 @@ public class OficinaRestController {
 	
 	@Secured("ROLE_ADMIN")
 	@DeleteMapping("/oficinas/{id")
-	public ResponseEntity<?> delete(@PathVariable int id){
+	public ResponseEntity<?> delete(@PathVariable Long id){
 		
 		Map<String, Object> response = new HashMap<>();
 		

@@ -33,7 +33,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Ciudad;
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Empleado;
+import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Oficina;
 import com.proyectoempresa.spring.boot.backend.apirest.models.service.IEmpleadoService;
 import com.proyectoempresa.spring.boot.backend.apirest.models.service.IUploadFileService;
 
@@ -49,18 +51,20 @@ public class EmpleadoRestController {
 	@Autowired
 	private IUploadFileService uploadService;
 	
+	private int numeroElementos = 4;
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/empleados/page/{page}")
 	public Page<Empleado> getEmpleados(@RequestParam String nombre, @RequestParam String apellido1,
-			@RequestParam String apellido2, @PathVariable Integer page) {
+			@RequestParam String apellido2, @RequestParam String email, @PathVariable Integer page) {
 
 		nombre = nombre.equalsIgnoreCase("undefined") ? "%" : nombre;
 		apellido1 = apellido1.equalsIgnoreCase("undefined") ? "%" : apellido1;
 		apellido2 = apellido2.equalsIgnoreCase("undefined") ? "%" : apellido2;
+		email = email.equalsIgnoreCase("undefined") ? "%" : email;
 
-		Pageable pageable = PageRequest.of(page, 4);
-		return this.empleadoService.findEmpleados(nombre, apellido1, apellido2, pageable);
+		Pageable pageable = PageRequest.of(page, numeroElementos);
+		return this.empleadoService.findEmpleados(nombre, apellido1, apellido2, email, pageable);
 	}
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
@@ -88,7 +92,7 @@ public class EmpleadoRestController {
 	
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/empleados")
-	public ResponseEntity<?> create(@Valid @RequestBody Empleado empleado, BindingResult result) {
+	public ResponseEntity<?> create(@RequestBody Empleado empleado, BindingResult result) {
 		
 		Empleado empleadoNuevo = null;
 		Map<String, Object> response = new HashMap<>();
@@ -146,12 +150,14 @@ public class EmpleadoRestController {
 
 		try {
 
+			empleadoActual.setDni(empleado.getDni());
 			empleadoActual.setNombre(empleado.getNombre());
 			empleadoActual.setApellido1(empleado.getApellido1());
 			empleadoActual.setApellido2(empleado.getApellido2());
 			empleadoActual.setEmail(empleado.getEmail());
 			empleadoActual.setCreateAt(empleado.getCreateAt());
 			empleadoActual.setOficina(empleado.getOficina());
+			
 
 			empleadoActualizado = empleadoService.save(empleadoActual);
 
@@ -241,4 +247,12 @@ public class EmpleadoRestController {
 		
 		return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
 	}
+	
+	
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/empleados/oficinas")
+	public List<Oficina> listarRegiones(){
+		return empleadoService.findAllOficinas();
+	}
+	
 }

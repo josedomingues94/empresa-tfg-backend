@@ -18,12 +18,12 @@ public interface IOficinaService {
 	
 	public Page<Oficina> findOficinas(String nombre, String ciudad, String provincia, Pageable pageable);
 	
-	public Oficina findById(int id);
+	public Oficina findById(Long id);
 	
 	public Oficina findByCiudad(String ciudad);
 	
 	public Oficina save(Oficina oficina);
 	
-	public void delete(int id);
+	public void delete(Long id);
 
 }

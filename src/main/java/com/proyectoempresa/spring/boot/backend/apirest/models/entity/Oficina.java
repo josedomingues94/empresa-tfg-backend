@@ -15,7 +15,7 @@ public class Oficina implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	@NotEmpty(message = "no puede estar vacio")
 	private String nombre;
@@ -29,11 +29,11 @@ public class Oficina implements Serializable {
 	@NotEmpty(message = "no puede estar vacia")
 	private String direccion;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

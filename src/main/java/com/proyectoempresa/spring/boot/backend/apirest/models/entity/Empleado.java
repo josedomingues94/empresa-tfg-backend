@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,7 +23,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -34,7 +35,7 @@ public class Empleado implements Serializable {
 	private Long id;
 	
 	@NotEmpty(message = "no puede estar vacio")
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String dni;
 	
 	@NotEmpty(message = "no puede estar vacio")
@@ -59,10 +60,13 @@ public class Empleado implements Serializable {
 
 	private String foto;
 
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "oficina_id")
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	private Oficina oficina;
+	
+	
 	
 
 	public Long getId() {
@@ -194,6 +198,11 @@ public class Empleado implements Serializable {
 
 
 
+	
+
+
+
+
 	public Oficina getOficina() {
 		return oficina;
 	}
@@ -205,6 +214,11 @@ public class Empleado implements Serializable {
 	public void setOficina(Oficina oficina) {
 		this.oficina = oficina;
 	}
+
+
+
+
+
 
 
 

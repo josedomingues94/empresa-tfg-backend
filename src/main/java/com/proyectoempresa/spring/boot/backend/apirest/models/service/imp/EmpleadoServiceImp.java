@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.proyectoempresa.spring.boot.backend.apirest.models.dao.IEmpleadoDao;
+import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Ciudad;
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Empleado;
+import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Oficina;
 import com.proyectoempresa.spring.boot.backend.apirest.models.service.IEmpleadoService;
 
 @Service
@@ -32,9 +34,16 @@ public class EmpleadoServiceImp implements IEmpleadoService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Empleado> findEmpleados(String nombre, String apellido1, String apellido2, Pageable pageable) {
-		return empleadoDao.findEmpleados(nombre, apellido1, apellido2, pageable);
+	public Page<Empleado> findEmpleados(String nombre, String apellido1, String apellido2, String email, Pageable pageable) {
+		return empleadoDao.findEmpleados(nombre, apellido1, apellido2, email, pageable);
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Oficina> findAllOficinas(){
+		return empleadoDao.findAllOficinas();
+	}
+	
 
 	@Override
 	@Transactional(readOnly = true)
@@ -54,5 +63,7 @@ public class EmpleadoServiceImp implements IEmpleadoService {
 		empleadoDao.deleteById(id);
 		
 	}
+
+	
 
 }
