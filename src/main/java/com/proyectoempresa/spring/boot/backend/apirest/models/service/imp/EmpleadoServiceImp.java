@@ -34,14 +34,14 @@ public class EmpleadoServiceImp implements IEmpleadoService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Empleado> findEmpleados(String nombre, String apellido1, String apellido2, String email, Pageable pageable) {
-		return empleadoDao.findEmpleados(nombre, apellido1, apellido2, email, pageable);
+	public Page<Empleado> findEmpleadoFiltrado(String nombre, String apellido1, String apellido2, String email, Pageable pageable) {
+		return empleadoDao.findEmpleadoFiltrado(nombre, apellido1, apellido2, email, pageable);
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Oficina> findAllOficinas(){
-		return empleadoDao.findAllOficinas();
+	public Empleado findByOficinaId(Long id) {
+		return empleadoDao.findByOficinaId(id);
 	}
 	
 

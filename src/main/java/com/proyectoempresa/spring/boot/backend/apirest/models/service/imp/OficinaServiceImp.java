@@ -37,8 +37,8 @@ public class OficinaServiceImp implements IOficinaService{
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Oficina> findOficinas(String nombre, String ciudad, String provincia, Pageable pageable) {
-		return oficinaDao.findOficinas(nombre, ciudad, provincia, pageable);
+	public Page<Oficina> findOficinasFiltradas(String nombre, String ciudad, String provincia, Pageable pageable) {
+		return oficinaDao.findOficinasFiltradas(nombre, ciudad, provincia, pageable);
 	}
 
 	@Override

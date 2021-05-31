@@ -55,7 +55,7 @@ public class EmpleadoRestController {
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/empleados/page/{page}")
-	public Page<Empleado> getEmpleados(@RequestParam String nombre, @RequestParam String apellido1,
+	public Page<Empleado> getEmpleadoFiltrado(@RequestParam String nombre, @RequestParam String apellido1,
 			@RequestParam String apellido2, @RequestParam String email, @PathVariable Integer page) {
 
 		nombre = nombre.equalsIgnoreCase("undefined") ? "%" : nombre;
@@ -64,7 +64,7 @@ public class EmpleadoRestController {
 		email = email.equalsIgnoreCase("undefined") ? "%" : email;
 
 		Pageable pageable = PageRequest.of(page, numeroElementos);
-		return this.empleadoService.findEmpleados(nombre, apellido1, apellido2, email, pageable);
+		return this.empleadoService.findEmpleadoFiltrado(nombre, apellido1, apellido2, email, pageable);
 	}
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
@@ -93,7 +93,6 @@ public class EmpleadoRestController {
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/empleados")
 	public ResponseEntity<?> create(@RequestBody Empleado empleado, BindingResult result) {
-		
 		Empleado empleadoNuevo = null;
 		Map<String, Object> response = new HashMap<>();
 		
@@ -250,9 +249,9 @@ public class EmpleadoRestController {
 	
 	
 	@Secured("ROLE_ADMIN")
-	@GetMapping("/empleados/oficinas")
-	public List<Oficina> listarRegiones(){
-		return empleadoService.findAllOficinas();
+	@GetMapping("/empleados/{oficina_id}/oficinas")
+	public Oficina mostrarOficinas(@PathVariable Long id){
+		return empleadoService.findByOficinaId(id).getOficina();
 	}
 	
 }

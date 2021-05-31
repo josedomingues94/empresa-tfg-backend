@@ -14,6 +14,6 @@ public interface IOficinaDao extends CrudRepository<Oficina, Long>, JpaRepositor
 
 	@Query(value="select * from oficinas where nombre like %?1% " + " or (ciudad like %?2%) or (provincia like %?3%)  "
 			, nativeQuery = true)
-			public Page <Oficina> findOficinas(String nombre, String ciudad, String provincia, Pageable pageable); 
+			public Page <Oficina> findOficinasFiltradas(String nombre, String ciudad, String provincia, Pageable pageable); 
 
 }

@@ -16,7 +16,7 @@ public interface IOficinaService {
 	
 	Page<Oficina> findAll(Pageable pageable);
 	
-	public Page<Oficina> findOficinas(String nombre, String ciudad, String provincia, Pageable pageable);
+	public Page<Oficina> findOficinasFiltradas(String nombre, String ciudad, String provincia, Pageable pageable);
 	
 	public Oficina findById(Long id);
 	

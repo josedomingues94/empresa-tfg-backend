@@ -50,7 +50,7 @@ public class OficinaRestController {
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/oficinas/page/{page}")
-	public Page<Oficina> getOficinas(@RequestParam String nombre, @RequestParam String ciudad,
+	public Page<Oficina> getOficinasFiltradas(@RequestParam String nombre, @RequestParam String ciudad,
 			@RequestParam String provincia, @PathVariable Integer page) {
 
 		nombre = nombre.equalsIgnoreCase("undefined") ? "%" : nombre;
@@ -58,7 +58,7 @@ public class OficinaRestController {
 		provincia = provincia.equalsIgnoreCase("undefined") ? "%" : provincia;
 
 		Pageable pageable = PageRequest.of(page, numeroElementos);
-		return this.oficinaService.findOficinas(nombre, ciudad, provincia, pageable);
+		return this.oficinaService.findOficinasFiltradas(nombre, ciudad, provincia, pageable);
 	}
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
@@ -158,7 +158,7 @@ public class OficinaRestController {
 	}
 	
 	@Secured("ROLE_ADMIN")
-	@DeleteMapping("/oficinas/{id")
+	@DeleteMapping("/oficinas/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id){
 		
 		Map<String, Object> response = new HashMap<>();
