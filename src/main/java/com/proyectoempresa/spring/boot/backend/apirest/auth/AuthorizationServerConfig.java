@@ -1,5 +1,6 @@
 package com.proyectoempresa.spring.boot.backend.apirest.auth;
 
+
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter{
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -29,7 +30,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	private AuthenticationManager authenticationManager;
 	
 	@Autowired
-	private InfoAditionalToken infoAdicionalToken;
+	private InfoAdicionalToken infoAdicionalToken;
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
@@ -71,4 +72,5 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		return jwtAccessTokenConverter;
 	}
 	
+
 }

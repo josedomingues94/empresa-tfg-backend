@@ -11,8 +11,8 @@ INSERT INTO empleados (dni, nombre, apellido1, apellido2, create_at, email, ofic
 INSERT INTO empleados (dni, nombre, apellido1, apellido2, create_at, email, oficina_id) VALUES('55633232G', 'Sergio', 'Torres', 'Martinez', '1995-11-19', 'sergio@gmail.com',5);
 INSERT INTO empleados (dni, nombre, apellido1, apellido2, create_at, email, oficina_id) VALUES('55809842C', 'Oscar', 'Alonso', 'Monje', '1993-02-04', 'oscar@gmail.com',6);
 
-INSERT INTO usuarios (username, password, enabled, nombre, apellido, email) VALUES ('jose','$2a$10$eG9PhXVnpslXzh.FHiVE5OhkX33lawK/65fl6rooSJCe5xcsF7tF.',1,'Jose','Domingues','jose@gmail.com');
-INSERT INTO usuarios (username, password, enabled, nombre, apellido, email) VALUES ('admin','$2a$10$nV7wqMYsJ9I/OLg0AnOauOjWT5ELkT2YcSc0jVEGPx217FM0FmvTW',1,'Javier','Serrato','javier@gmail.com');
+INSERT INTO usuarios (username, password, enabled, nombre, apellidos, email) VALUES ('jose','$2a$10$eG9PhXVnpslXzh.FHiVE5OhkX33lawK/65fl6rooSJCe5xcsF7tF.',1,'Jose','Domingues','jose@gmail.com');
+INSERT INTO usuarios (username, password, enabled, nombre, apellidos, email) VALUES ('admin','$2a$10$nV7wqMYsJ9I/OLg0AnOauOjWT5ELkT2YcSc0jVEGPx217FM0FmvTW',1,'Javier','Serrato','javier@gmail.com');
 
 
 INSERT INTO roles (nombre) VALUES ('ROLE_USER');

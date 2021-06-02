@@ -11,13 +11,13 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.stereotype.Component;
 
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Usuario;
-import com.proyectoempresa.spring.boot.backend.apirest.models.service.IUsuarioService;
+import com.proyectoempresa.spring.boot.backend.apirest.service.IUsuarioService;
+
 
 
 @Component
-public class InfoAditionalToken implements TokenEnhancer {
-
-
+public class InfoAdicionalToken implements TokenEnhancer{
+	
 	@Autowired
 	private IUsuarioService usuarioService;
 

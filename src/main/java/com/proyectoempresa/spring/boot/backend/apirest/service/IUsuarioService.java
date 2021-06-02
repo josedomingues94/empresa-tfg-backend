@@ -1,4 +1,5 @@
-package com.proyectoempresa.spring.boot.backend.apirest.models.service;
+package com.proyectoempresa.spring.boot.backend.apirest.service;
+
 
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Usuario;
 

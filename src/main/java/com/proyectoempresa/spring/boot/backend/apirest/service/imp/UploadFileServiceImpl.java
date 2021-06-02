@@ -1,4 +1,4 @@
-package com.proyectoempresa.spring.boot.backend.apirest.models.service.imp;
+package com.proyectoempresa.spring.boot.backend.apirest.service.imp;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,9 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.proyectoempresa.spring.boot.backend.apirest.models.service.IUploadFileService;
+import com.proyectoempresa.spring.boot.backend.apirest.service.IUploadFileService;
+
+
 
 @Service
 public class UploadFileServiceImpl implements IUploadFileService{

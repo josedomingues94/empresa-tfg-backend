@@ -33,11 +33,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Ciudad;
+
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Empleado;
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Oficina;
-import com.proyectoempresa.spring.boot.backend.apirest.models.service.IEmpleadoService;
-import com.proyectoempresa.spring.boot.backend.apirest.models.service.IUploadFileService;
+import com.proyectoempresa.spring.boot.backend.apirest.service.IEmpleadoService;
+import com.proyectoempresa.spring.boot.backend.apirest.service.IUploadFileService;
+
 
 
 @RestController

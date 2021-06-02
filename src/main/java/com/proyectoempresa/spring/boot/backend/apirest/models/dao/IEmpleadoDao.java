@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Ciudad;
+
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Empleado;
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Oficina;
 

@@ -1,4 +1,4 @@
-package com.proyectoempresa.spring.boot.backend.apirest.models.service.imp;
+package com.proyectoempresa.spring.boot.backend.apirest.service.imp;
 
 import java.util.List;
 
@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.proyectoempresa.spring.boot.backend.apirest.models.dao.IEmpleadoDao;
-import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Ciudad;
+
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Empleado;
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Oficina;
-import com.proyectoempresa.spring.boot.backend.apirest.models.service.IEmpleadoService;
+import com.proyectoempresa.spring.boot.backend.apirest.service.IEmpleadoService;
+
 
 @Service
 public class EmpleadoServiceImp implements IEmpleadoService {

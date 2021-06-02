@@ -1,4 +1,4 @@
-package com.proyectoempresa.spring.boot.backend.apirest.models.service.imp;
+package com.proyectoempresa.spring.boot.backend.apirest.service.imp;
 
 
 
@@ -13,7 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.proyectoempresa.spring.boot.backend.apirest.models.dao.IOficinaDao;
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Empleado;
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Oficina;
-import com.proyectoempresa.spring.boot.backend.apirest.models.service.IOficinaService;
+import com.proyectoempresa.spring.boot.backend.apirest.service.IOficinaService;
+
+
 
 
 

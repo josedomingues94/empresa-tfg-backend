@@ -1,4 +1,5 @@
-package com.proyectoempresa.spring.boot.backend.apirest.models.service.imp;
+package com.proyectoempresa.spring.boot.backend.apirest.service.imp;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.proyectoempresa.spring.boot.backend.apirest.models.dao.IUsuarioDao;
 import com.proyectoempresa.spring.boot.backend.apirest.models.entity.Usuario;
-import com.proyectoempresa.spring.boot.backend.apirest.models.service.IUsuarioService;
+import com.proyectoempresa.spring.boot.backend.apirest.service.IUsuarioService;
+
 
 
 @Service
@@ -55,4 +57,3 @@ public class UsuarioServiceImp implements IUsuarioService, UserDetailsService{
 	}
 
 }
-

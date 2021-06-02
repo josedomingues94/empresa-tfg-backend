@@ -1,4 +1,4 @@
-package com.proyectoempresa.spring.boot.backend.apirest.models.service.imp;
+package com.proyectoempresa.spring.boot.backend.apirest.service.imp;
 
 import java.util.List;
 
@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.proyectoempresa.spring.boot.backend.apirest.models.dao.ChatRepository;
 import com.proyectoempresa.spring.boot.backend.apirest.models.documents.Mensaje;
-import com.proyectoempresa.spring.boot.backend.apirest.models.service.ChatService;
+import com.proyectoempresa.spring.boot.backend.apirest.service.ChatService;
+
 
 
 @Service

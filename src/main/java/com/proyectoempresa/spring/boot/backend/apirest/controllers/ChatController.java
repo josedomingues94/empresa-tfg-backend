@@ -11,7 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.proyectoempresa.spring.boot.backend.apirest.models.documents.Mensaje;
-import com.proyectoempresa.spring.boot.backend.apirest.models.service.ChatService;
+import com.proyectoempresa.spring.boot.backend.apirest.service.ChatService;
+
 
 
 @Controller
