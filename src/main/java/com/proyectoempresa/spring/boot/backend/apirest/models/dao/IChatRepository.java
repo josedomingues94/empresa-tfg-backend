@@ -7,8 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.proyectoempresa.spring.boot.backend.apirest.models.documents.Mensaje;
 
 
-public interface ChatRepository extends MongoRepository<Mensaje, String>{
+public interface IChatRepository extends MongoRepository<Mensaje, String>{
 	
     public List<Mensaje> findFirst10ByOrderByFechaDesc();
 }
-

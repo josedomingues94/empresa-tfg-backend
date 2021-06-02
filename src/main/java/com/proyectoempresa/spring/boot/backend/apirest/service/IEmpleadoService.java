@@ -18,7 +18,8 @@ public interface IEmpleadoService {
 	
 	public Page<Empleado> findEmpleadoFiltrado(String nombre, String apellido1, String apellido2, String email, Pageable pageable);
 	
-	public Empleado findByOficinaId(Long id);
+	public List<Oficina> findAllOficinas();
+	
 	
 	public Empleado findById(Long id);
 	

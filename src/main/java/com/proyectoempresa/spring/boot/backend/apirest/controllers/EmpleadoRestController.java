@@ -250,9 +250,9 @@ public class EmpleadoRestController {
 	
 	
 	@Secured("ROLE_ADMIN")
-	@GetMapping("/empleados/{oficina_id}/oficinas")
-	public Oficina mostrarOficinas(@PathVariable Long id){
-		return empleadoService.findByOficinaId(id).getOficina();
+	@GetMapping("/empleados/oficinas")
+	public List<Oficina> listarRegiones(){
+		return empleadoService.findAllOficinas();
 	}
 	
 }

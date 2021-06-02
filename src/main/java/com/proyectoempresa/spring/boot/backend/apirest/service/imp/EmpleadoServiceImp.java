@@ -41,8 +41,8 @@ public class EmpleadoServiceImp implements IEmpleadoService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Empleado findByOficinaId(Long id) {
-		return empleadoDao.findByOficinaId(id);
+	public List<Oficina> findAllOficinas() {
+		return empleadoDao.findAllOficinas();
 	}
 	
 

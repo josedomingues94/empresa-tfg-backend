@@ -20,7 +20,7 @@ public interface IEmpleadoDao extends CrudRepository<Empleado, Long>,JpaReposito
 	public Page <Empleado> findEmpleadoFiltrado(String nombre, String apellido1, String apellido2, String email, Pageable pageable);
 			
 	@Query("from Oficina")
-	public Empleado findByOficinaId(Long id);
+	public List<Oficina> findAllOficinas();
 	
 	
 	

@@ -5,17 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.proyectoempresa.spring.boot.backend.apirest.models.dao.ChatRepository;
+import com.proyectoempresa.spring.boot.backend.apirest.models.dao.IChatRepository;
 import com.proyectoempresa.spring.boot.backend.apirest.models.documents.Mensaje;
-import com.proyectoempresa.spring.boot.backend.apirest.service.ChatService;
+import com.proyectoempresa.spring.boot.backend.apirest.service.IChatService;
+
 
 
 
 @Service
-public class ChatServiceImpl implements ChatService{
+public class ChatServiceImpl implements IChatService{
 	
 	@Autowired
-	private ChatRepository chatDao;
+	private IChatRepository chatDao;
 
 	@Override
 	public List<Mensaje> obtenerUltimos10Mensajes() {

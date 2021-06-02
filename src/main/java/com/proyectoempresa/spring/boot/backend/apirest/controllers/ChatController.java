@@ -8,11 +8,9 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.proyectoempresa.spring.boot.backend.apirest.models.documents.Mensaje;
-import com.proyectoempresa.spring.boot.backend.apirest.service.ChatService;
-
+import com.proyectoempresa.spring.boot.backend.apirest.service.IChatService;
 
 
 @Controller
@@ -21,7 +19,7 @@ public class ChatController {
 	private String[] colores = {"red", "green", "blue", "magenta", "purple", "orange"};
 	
 	@Autowired
-	private ChatService chatService;
+	private IChatService chatService;
 	
 	@Autowired
 	private SimpMessagingTemplate webSocket;

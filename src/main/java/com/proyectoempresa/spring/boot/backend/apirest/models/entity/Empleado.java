@@ -60,7 +60,7 @@ public class Empleado implements Serializable {
 
 	private String foto;
 
-	@NotNull(message = "la oficina no puede ser vacia")
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "oficina_id")
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
