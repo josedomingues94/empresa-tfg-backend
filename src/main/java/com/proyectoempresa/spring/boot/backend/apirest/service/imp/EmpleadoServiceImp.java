@@ -23,29 +23,10 @@ public class EmpleadoServiceImp implements IEmpleadoService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Empleado> findAll() {
-		return (List<Empleado>) empleadoDao.findAll();
-	}
-	
-	@Override
-	@Transactional(readOnly = true)
 	public Page<Empleado> findAll(Pageable pageable) {
 		return empleadoDao.findAll(pageable);
 	}
 	
-	@Override
-	@Transactional(readOnly = true)
-	public Page<Empleado> findEmpleadoFiltrado(String nombre, String apellido1, String apellido2, String email, Pageable pageable) {
-		return empleadoDao.findEmpleadoFiltrado(nombre, apellido1, apellido2, email, pageable);
-	}
-	
-	@Override
-	@Transactional(readOnly = true)
-	public List<Oficina> findAllOficinas() {
-		return empleadoDao.findAllOficinas();
-	}
-	
-
 	@Override
 	@Transactional(readOnly = true)
 	public Empleado findById(Long id) {
@@ -62,7 +43,12 @@ public class EmpleadoServiceImp implements IEmpleadoService {
 	@Transactional
 	public void delete(Long id) {
 		empleadoDao.deleteById(id);
-		
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Oficina> findAllOficinas() {
+		return empleadoDao.findAllOficinas();
 	}
 
 	
