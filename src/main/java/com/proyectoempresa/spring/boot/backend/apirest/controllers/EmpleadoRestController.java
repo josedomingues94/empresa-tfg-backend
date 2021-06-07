@@ -56,9 +56,16 @@ public class EmpleadoRestController {
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/empleados/page/{page}")
-	public Page<Empleado> getEmpleados(@PathVariable Integer page) {
+	public Page<Empleado> getEmpleadoFiltrado(@RequestParam String nombre, @RequestParam String apellido1,
+			@RequestParam String apellido2, @RequestParam String email, @PathVariable Integer page) {
+
+		nombre = nombre.equalsIgnoreCase("undefined") ? "%" : nombre;
+		apellido1 = apellido1.equalsIgnoreCase("undefined") ? "%" : apellido1;
+		apellido2 = apellido2.equalsIgnoreCase("undefined") ? "%" : apellido2;
+		email = email.equalsIgnoreCase("undefined") ? "%" : email;
+
 		Pageable pageable = PageRequest.of(page, numeroElementos);
-		return empleadoService.findAll(pageable);
+		return this.empleadoService.findEmpleadoFiltrado(nombre, apellido1, apellido2, email, pageable);
 	}
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
@@ -77,7 +84,7 @@ public class EmpleadoRestController {
 		}
 		
 		if(empleado == null) {
-			response.put("mensaje", "El cliente ID: ".concat(id.toString().concat(" no existe en la base de datos!")));
+			response.put("mensaje", "El empleado ID: ".concat(id.toString().concat(" no existe en la base de datos!")));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
 		
@@ -86,8 +93,7 @@ public class EmpleadoRestController {
 	
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/empleados")
-	public ResponseEntity<?> create(@Valid @RequestBody Empleado empleado, BindingResult result) {
-		
+	public ResponseEntity<?> create(@RequestBody Empleado empleado, BindingResult result) {
 		Empleado empleadoNuevo = null;
 		Map<String, Object> response = new HashMap<>();
 		
@@ -110,7 +116,7 @@ public class EmpleadoRestController {
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		response.put("mensaje", "El cliente ha sido creado con éxito!");
+		response.put("mensaje", "El empleado ha sido creado con éxito!");
 		response.put("empleado", empleadoNuevo);
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
@@ -137,7 +143,7 @@ public class EmpleadoRestController {
 		}
 		
 		if (empleadoActual == null) {
-			response.put("mensaje", "Error: no se pudo editar, el cliente ID: "
+			response.put("mensaje", "Error: no se pudo editar, el empleado ID: "
 					.concat(id.toString().concat(" no existe en la base de datos!")));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
@@ -147,20 +153,21 @@ public class EmpleadoRestController {
 			empleadoActual.setDni(empleado.getDni());
 			empleadoActual.setNombre(empleado.getNombre());
 			empleadoActual.setApellido1(empleado.getApellido1());
-			empleadoActual.setApellido1(empleado.getApellido1());
-			empleadoActual.setCreateAt(empleado.getCreateAt());
+			empleadoActual.setApellido2(empleado.getApellido2());
 			empleadoActual.setEmail(empleado.getEmail());
+			empleadoActual.setCreateAt(empleado.getCreateAt());
 			empleadoActual.setOficina(empleado.getOficina());
+			
 
 			empleadoActualizado = empleadoService.save(empleadoActual);
 
 		} catch (DataAccessException e) {
-			response.put("mensaje", "Error al actualizar el cliente en la base de datos");
+			response.put("mensaje", "Error al actualizar el empleado en la base de datos");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		response.put("mensaje", "El cliente ha sido actualizado con éxito!");
+		response.put("mensaje", "El empleado ha sido actualizado con éxito!");
 		response.put("empleado", empleadoActualizado);
 
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
@@ -173,7 +180,6 @@ public class EmpleadoRestController {
 		Map<String, Object> response = new HashMap<>();
 		
 		try {
-			
 			Empleado empleado = empleadoService.findById(id);
 			String nombreFotoAnterior = empleado.getFoto();
 			
@@ -181,12 +187,12 @@ public class EmpleadoRestController {
 			
 		    empleadoService.delete(id);
 		} catch (DataAccessException e) {
-			response.put("mensaje", "Error al eliminar el cliente de la base de datos");
+			response.put("mensaje", "Error al eliminar el empleado de la base de datos");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		response.put("mensaje", "El cliente eliminado con éxito!");
+		response.put("mensaje", "El empleado eliminado con éxito!");
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
@@ -204,7 +210,7 @@ public class EmpleadoRestController {
 			try {
 				nombreArchivo = uploadService.copiar(archivo);
 			} catch (IOException e) {
-				response.put("mensaje", "Error al subir la imagen del cliente");
+				response.put("mensaje", "Error al subir la imagen del empleado");
 				response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
@@ -245,8 +251,14 @@ public class EmpleadoRestController {
 	
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/empleados/oficinas")
-	public List<Oficina> findAllOficinas(){
+	public List<Oficina> listarRegiones(){
 		return empleadoService.findAllOficinas();
+	}
+	
+	@Secured({ "ROLE_ADMIN" })
+	@GetMapping("/empleados/{id}/oficina")
+	public Oficina mostrarOficina(@PathVariable Long id) {
+		return empleadoService.findById(id).getOficina();
 	}
 	
 }

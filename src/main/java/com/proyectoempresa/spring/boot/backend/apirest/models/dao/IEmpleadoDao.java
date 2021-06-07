@@ -23,6 +23,9 @@ public interface IEmpleadoDao extends CrudRepository<Empleado, Long>,JpaReposito
 	public List<Oficina> findAllOficinas();
 	
 	
+	@Query(value = "SELECT e.oficina_id, o.id from empleados e join oficinas o on e.oficina_id = o.id", nativeQuery = true)
+	public Empleado findByIdOficina(Long idOficina);
+	
 	
 	
 }

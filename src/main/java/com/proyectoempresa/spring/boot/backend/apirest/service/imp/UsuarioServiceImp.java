@@ -56,9 +56,4 @@ public class UsuarioServiceImp implements IUsuarioService, UserDetailsService{
 		return usuarioDao.findByUsername(username);
 	}
 
-	@Override
-	public Usuario findById(Long id) {
-		return usuarioDao.findById(id).orElse(null);
-	}
-
 }
